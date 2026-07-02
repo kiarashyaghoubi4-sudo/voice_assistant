@@ -16,11 +16,7 @@ class listener:
                 text = self.recognizer.recognize_google(audio)
                 return text.lower()
             except sr.UnknownValueError:
-                return None
+                return "sorry,couldn't understand what you said.please try again."
             except sr.RequestError:
-                return None
-
-listener = listener()
-
-print(listener.listen())
+                return "sorry,unable to connect to google services."
 
