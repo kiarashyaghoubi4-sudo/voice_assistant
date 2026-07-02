@@ -7,9 +7,9 @@ class listener:
     
     def listen(self):
         with sr.Microphone() as src:
-            print("listening...")
             
             self.recognizer.adjust_for_ambient_noise(src, duration=1)
+            print("listening...")
 
             audio = self.recognizer.listen(src)
             try:
@@ -20,5 +20,7 @@ class listener:
             except sr.RequestError:
                 return None
 
+listener = listener()
 
+print(listener.listen())
 
