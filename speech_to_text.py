@@ -17,6 +17,7 @@ class listener:
                 return text.lower()
             except sr.UnknownValueError:
                 return "sorry,couldn't understand what you said.please try again."
+            
             except sr.RequestError:
                 return "sorry,unable to connect to google services."
 

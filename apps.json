@@ -1,7 +1,5 @@
 {
-    "chrome" :"C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "notepad" : "notepad",
     "cmd" : "cmd",
-    "minecraft" : "C:/Users/mkhca/AppData/Roaming/.minecraft/TLauncher.exe",
-    "vs code" : "C:/Users/mkhca/AppData/Local/Programs/Microsoft VS Code/Code.exe",
-    "calender" : "D:/kiarash/My Calender.exe"   
+    "calclulator" : "calc"
 }
