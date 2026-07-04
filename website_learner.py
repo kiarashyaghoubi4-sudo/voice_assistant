@@ -54,17 +54,23 @@ def get_url():
 
     window.mainloop()
 
+
     return url
 
 def learn_website(name, url):
+    if not url:
+        return "App learning canceled."
+    
     url = url.lower()
+
     with open("websites.json","r") as file:
         websites = load(file)
-        if not url:
-            return "App learning canceled."
 
     if name in websites:
         return f'website "{name}" is already learned. Would you like me to open it now?'
+    
+    if not url.startswith(("http://", "https://")):
+        url = "https://" + url
 
     websites[name] = url
 
