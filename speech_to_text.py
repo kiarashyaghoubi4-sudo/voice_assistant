@@ -20,4 +20,3 @@ class listener:
             
             except sr.RequestError:
                 return "sorry,unable to connect to google services."
-
