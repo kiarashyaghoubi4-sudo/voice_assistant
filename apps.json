@@ -1,5 +1,6 @@
 {
     "notepad" : "notepad",
     "cmd" : "cmd",
-    "calclulator" : "calc"
+    "calclulator" : "calc",
+    "file explorer" : "explorer"
 }
