@@ -1,5 +1,4 @@
 from json import load, dump
-from webbrowser import open
 import customtkinter as ctk
 def learn_website_confirmer(txt):
     if ("learn" in txt) and ("website" in txt):
@@ -63,7 +62,7 @@ def learn_website(name, url):
     
     url = url.lower()
 
-    with open("websites.json","r") as file:
+    with open("data/websites.json","r") as file:
         websites = load(file)
 
     if name in websites:
@@ -74,7 +73,7 @@ def learn_website(name, url):
 
     websites[name] = url
 
-    with open("apps.json", "w") as file:
+    with open("data/apps.json", "w") as file:
         dump(websites, file, indent=4)
 
     return f'website "{name}" has been learned. Would you like me to open it now?'

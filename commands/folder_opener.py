@@ -1,11 +1,11 @@
-from default_folders import DEFAULT_FOLDERS
+from data.default_folders import DEFAULT_FOLDERS
 from json import load
 from os import startfile
 
 def open_folder(txt):
     txt = txt.lower()
 
-    with open("folders.json","r") as user_folders_json:
+    with open("data/folders.json","r") as user_folders_json:
         user_folders = load(user_folders_json)
 
         folders = DEFAULT_FOLDERS.copy()

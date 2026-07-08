@@ -3,7 +3,7 @@ from json import load
 
 def open_app(txt):
     txt = txt.lower()
-    with open("apps.json","r") as file:
+    with open("data/apps.json","r") as file:
         apps = load(file)
         for app in apps:
             if app in txt:

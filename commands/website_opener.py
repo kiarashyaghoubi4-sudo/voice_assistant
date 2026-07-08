@@ -2,7 +2,7 @@ from webbrowser import open as webopen
 from json import load
 
 def website_opener(txt):
-    with open("websites.json") as file:
+    with open("/datawebsites.json") as file:
         websites = load(file)
         
         for website in websites:

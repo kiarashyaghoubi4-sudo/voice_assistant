@@ -19,7 +19,7 @@ def learn_app(name):
     if not path:
         return "App learning canceled."
 
-    with open("apps.json", "r") as file:
+    with open("data/apps.json", "r") as file:
         apps = load(file)
 
     if name in apps:
@@ -27,7 +27,7 @@ def learn_app(name):
 
     apps[name] = path
 
-    with open("apps.json", "w") as file:
+    with open("data/apps.json", "w") as file:
         dump(apps, file, indent=4)
 
     return f'App "{name}" has been learned. Would you like me to open it now?'
