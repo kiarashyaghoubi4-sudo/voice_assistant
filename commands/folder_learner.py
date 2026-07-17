@@ -1,9 +1,16 @@
 from json import load, dump
 from tkinter import Tk , filedialog
 
+KEYWORDS = (
+    "learn folder",
+    "remember foler",
+    "add folder",
+)
+
 def learn_folder_confirmer(txt):
-    if ("learn" in txt) and ("folder" in txt):
+    if any(keyword in txt for keyword in KEYWORDS):
         return "What should i call it?"
+    return None
     
 def learn_folder(name):
     name = name.lower()

@@ -1,8 +1,16 @@
 from json import load, dump
 import customtkinter as ctk
+
+KEYWORDS = (
+    "learn website",
+    "remember website",
+    "add website",
+)
+
 def learn_website_confirmer(txt):
-    if ("learn" in txt) and ("website" in txt):
+    if any(keyword in txt for keyword in KEYWORDS):
         return "sure!What should i call it?"
+    return None
     
 def get_url():
 

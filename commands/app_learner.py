@@ -1,9 +1,16 @@
 from json import load, dump
 from tkinter import Tk , filedialog
 
+KEYWORDS = (
+    "learn app",
+    "remember app",
+    "add app",
+)
+
 def learn_app_confirmer(txt):
-    if ("learn" in txt) and ("app" in txt):
+    if any(keyword in txt for keyword in KEYWORDS):
         return "What should i call it?"
+    return None
     
 def learn_app(name):
     name = name.lower()

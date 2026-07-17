@@ -2,8 +2,17 @@ from data.default_folders import DEFAULT_FOLDERS
 from json import load
 from os import startfile
 
+KEYWORDS = (
+    "open folder",
+    "launch folder",
+    "run folder",
+)
+
 def open_folder(txt):
     txt = txt.lower()
+
+    if not any(keyword in txt for keyword in KEYWORDS):
+        return None
 
     with open("data/folders.json","r") as user_folders_json:
         user_folders = load(user_folders_json)
