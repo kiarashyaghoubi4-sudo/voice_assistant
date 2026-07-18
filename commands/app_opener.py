@@ -1,6 +1,6 @@
 from os import startfile
 from json import load
-
+from utils.paths import DATA
 KEYWORDS = (
     "open app",
     "launch app",
@@ -12,7 +12,7 @@ def open_app(txt):
     if not any(keyword in txt for keyword in KEYWORDS):
         return None
     
-    with open("data/apps.json","r") as file:
+    with open(DATA / "apps.json","r") as file:
         apps = load(file)
         for app in apps:
             if app in txt:

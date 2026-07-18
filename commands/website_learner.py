@@ -1,5 +1,6 @@
 from json import load, dump
 import customtkinter as ctk
+from utils.paths import DATA
 
 KEYWORDS = (
     "learn website",
@@ -70,7 +71,7 @@ def learn_website(name, url):
     
     url = url.lower()
 
-    with open("data/websites.json","r") as file:
+    with open(DATA / "websites.json","r") as file:
         websites = load(file)
 
     if name in websites:
@@ -81,7 +82,7 @@ def learn_website(name, url):
 
     websites[name] = url
 
-    with open("data/apps.json", "w") as file:
+    with open(DATA / "apps.json", "w") as file:
         dump(websites, file, indent=4)
 
     return f'website "{name}" has been learned. Would you like me to open it now?'

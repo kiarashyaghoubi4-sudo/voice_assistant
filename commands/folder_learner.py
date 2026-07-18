@@ -1,6 +1,6 @@
 from json import load, dump
 from tkinter import Tk , filedialog
-
+from utils.paths import DATA
 KEYWORDS = (
     "learn folder",
     "remember foler",
@@ -25,7 +25,7 @@ def learn_folder(name):
     if not path:
         return "no folders were selected"
 
-    with open("data/folders.json", "r") as file:
+    with open(DATA / "folders.json", "r") as file:
         folders = load(file)
 
     if name in folders:
@@ -33,7 +33,7 @@ def learn_folder(name):
 
     folders[name] = path
 
-    with open("data/folders.json", "w") as file:
+    with open(DATA / "folders.json", "w") as file:
         dump(folders, file, indent=4)
 
     return f'folder "{name}" has been learned. Would you like me to open it now?'

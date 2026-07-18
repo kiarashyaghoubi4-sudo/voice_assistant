@@ -1,6 +1,7 @@
 from data.default_folders import DEFAULT_FOLDERS
 from json import load
 from os import startfile
+from utils.paths import DATA
 
 KEYWORDS = (
     "open folder",
@@ -14,7 +15,7 @@ def open_folder(txt):
     if not any(keyword in txt for keyword in KEYWORDS):
         return None
 
-    with open("data/folders.json","r") as user_folders_json:
+    with open(DATA / "folders.json","r") as user_folders_json:
         user_folders = load(user_folders_json)
 
         folders = DEFAULT_FOLDERS.copy()

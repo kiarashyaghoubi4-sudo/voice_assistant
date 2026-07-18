@@ -1,5 +1,6 @@
 from json import load, dump
 from tkinter import Tk , filedialog
+from utils.paths import DATA
 
 KEYWORDS = (
     "learn app",
@@ -27,7 +28,7 @@ def learn_app(name):
     if not path:
         return "no apps were selected."
 
-    with open("data/apps.json", "r") as file:
+    with open(DATA / "apps.json", "r") as file:
         apps = load(file)
 
     if name in apps:
@@ -35,7 +36,7 @@ def learn_app(name):
 
     apps[name] = path
 
-    with open("data/apps.json", "w") as file:
+    with open(DATA / "apps.json", "w") as file:
         dump(apps, file, indent=4)
 
     return f"{name} has been learned. Would you like me to open it now?"

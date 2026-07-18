@@ -1,5 +1,5 @@
 import customtkinter as ctk
-
+from utils.paths import ASSETS
 class Dashboard:
 
     IDLE = "💤 Idle"
@@ -13,7 +13,7 @@ class Dashboard:
         self.window = ctk.CTk()
         self.window.geometry("350x300")
         self.window.title("Voice Assistant")
-        self.window.iconbitmap("assets/icon.ico")
+        self.window.iconbitmap(ASSETS / "icon.ico")
         self.create_widgets()
         self.create_labels()
         self.create_chat_box()
