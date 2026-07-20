@@ -4,14 +4,14 @@ def lock(txt):
     txt = txt.lower()
     if "y" in txt:
         run("rundll32 user32.dll LockWorkStation")
-        return "sure! locking."
-    return None
+        return True, "sure! locking."
+    return False, ""
 
 def shutdown_confirmation(txt):
     txt = txt.lower()
     if "shutdown" in txt:
-        return "are you sure you want to shut down your computer?"
-    return None
+        return True, "are you sure you want to shut down your computer?"
+    return False, ""
     
 def shutdown(txt):
     txt = txt.lower()
@@ -24,8 +24,8 @@ def shutdown(txt):
 def restart_confirmation(txt):
     txt = txt.lower()
     if "restart" in txt:
-        return "are you sure you want to restart your computer?"
-    return None
+        return True, "are you sure you want to restart your computer?"
+    return False, ""
 
 def restart(txt):
     txt = txt.lower()
@@ -55,8 +55,8 @@ def sleep(txt):
 
     if "sleep" in txt:
         run("shutdown /l")
-        return "sleeping"
-    return None
+        return True, "sleeping"
+    return False, ""
 
 
 def hibernate(txt):
@@ -64,5 +64,5 @@ def hibernate(txt):
 
     if "hibernate" in txt:
         run("shutdown /l")
-        return "hibernating"
-    return None
+        return True, "hibernating"
+    return False, ""

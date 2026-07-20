@@ -8,18 +8,21 @@ wake_event = Event()
 
 SAMPLE_RATE = 16000
 CHUNK_SIZE = 1280
-WAKEWORD_NAME = "hey_jarvis"
+MODEL_NAME = "hey_jarvis_v0.1.onnx"
 
 model = Model(
-    inference_framework= "onnx",
-    wakeword_models=[MODELS / WAKEWORD_NAME])
+    wakeword_models=[
+        r"D:\kiarash\code\python_projects\projects\voice_assistant\speech\models\hey_jarvis_v0.1.onnx"
+    ],
+    inference_framework="onnx"
+)
 
 def callback(indata, frames, time, status):
     audio = indata.flatten()
 
     prediction = model.predict(audio)
 
-    score = prediction.get(WAKEWORD_NAME, 0)
+    score = prediction.get(MODEL_NAME, 0)
     
     if score > 0.5:
         wake_event.set()

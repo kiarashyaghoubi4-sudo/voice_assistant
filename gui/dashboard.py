@@ -62,5 +62,8 @@ class Dashboard:
 
         self.chat_box.configure(state="disabled")
 
+    def destroy_window(self):
+        self.window.destroy()
+
     def start_window(self):
         self.window.mainloop()

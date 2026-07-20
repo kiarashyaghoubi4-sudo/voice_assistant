@@ -10,8 +10,8 @@ KEYWORDS = (
 
 def learn_app_confirmer(txt):
     if any(keyword in txt for keyword in KEYWORDS):
-        return "What should i call it?"
-    return None
+        return True, "What should i call it?"
+    return False, ""
     
 def learn_app(name):
     name = name.lower()

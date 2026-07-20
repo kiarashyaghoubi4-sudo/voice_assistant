@@ -13,7 +13,7 @@ def open_folder(txt):
     txt = txt.lower()
 
     if not any(keyword in txt for keyword in KEYWORDS):
-        return None
+        return False, ""
 
     with open(DATA / "folders.json","r") as user_folders_json:
         user_folders = load(user_folders_json)
@@ -24,6 +24,6 @@ def open_folder(txt):
     for folder, path in folders.items():
         if folder in txt:
             startfile(path)
-            return f"sure! opening {folder}"
+            return True, f"sure! opening {folder}"
 
-    return "sorry.i don't know that folder yet.would you like me to learn it?"
+    return True, "sorry.i don't know that folder yet.would you like me to learn it?"

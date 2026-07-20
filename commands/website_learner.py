@@ -10,8 +10,8 @@ KEYWORDS = (
 
 def learn_website_confirmer(txt):
     if any(keyword in txt for keyword in KEYWORDS):
-        return "sure!What should i call it?"
-    return None
+        return True, "sure! What should i call it?"
+    return False, ""
     
 def get_url():
 

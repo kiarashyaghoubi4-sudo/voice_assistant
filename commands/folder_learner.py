@@ -9,8 +9,8 @@ KEYWORDS = (
 
 def learn_folder_confirmer(txt):
     if any(keyword in txt for keyword in KEYWORDS):
-        return "What should i call it?"
-    return None
+        return True, "What should i call it?"
+    return False, None
     
 def learn_folder(name):
     name = name.lower()
