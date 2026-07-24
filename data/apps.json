@@ -3,5 +3,6 @@
     "file explorer": "explorer",
     "powershell": "powershell",
     "notepad": "notepad",
-    "command prompt" : "cmd"
+    "command prompt" : "cmd",
+    "calculator" : "calc"
 }

@@ -48,8 +48,12 @@ class Assistant:
         if success:
             self.window.show_msg(command, dashboard.Dashboard.USER)
             return command
+        else:
+            success, command = self.listener.listen()
+            if success:
+                self.window.show_msg(command, dashboard.Dashboard.USER)
+                return command
         return None
-    
     def say_msg(self, msg, sender):
         self.window.show_msg(msg, sender)
         self.speak(msg)
