@@ -67,7 +67,7 @@ def get_url():
 
 def learn_website(name, url):
     if not url:
-        return "App learning canceled."
+        return "Website learning canceled."
     
     url = url.lower()
 
@@ -82,7 +82,7 @@ def learn_website(name, url):
 
     websites[name] = url
 
-    with open(DATA / "apps.json", "w") as file:
+    with open(DATA / "websites.json", "w") as file:
         dump(websites, file, indent=4)
 
     return f'website "{name}" has been learned. Would you like me to open it now?'

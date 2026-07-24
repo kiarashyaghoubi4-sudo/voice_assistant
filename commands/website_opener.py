@@ -3,8 +3,8 @@ from json import load
 from utils.paths import DATA
 
 KEYWORDS = (
-    "go to website",
-    "visit website",
+    "go to",
+    "visit",
 )
 
 def website_opener(txt):
@@ -20,6 +20,6 @@ def website_opener(txt):
                 webopen(websites[website])
                 return True, f"sure! opening {website}"
             
-        return True, "sorry, i don't know that website yet. would you like me to learn it?"
+        return True, "sorry, but i don't know that website yet.would you like me to learn it?"
     
             

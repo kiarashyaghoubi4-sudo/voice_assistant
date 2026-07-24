@@ -13,32 +13,49 @@ class Assistant:
 
     def __init__(self):
         self.listener = speech_to_text.listener()
-        self.speaker = text_to_speech.speaker()
         self.window = dashboard.Dashboard()
+        self.speak = text_to_speech.speak 
+    def run(self):
+        
+        while True:
+            self.window.set_status(dashboard.Dashboard.IDLE)
+            self.wake()
+
+            command = self.listen()
+
+            if command:
+                self.execute(command)
+
+
     
     def setup(self):
-        self.window.set_status(dashboard.Dashboard.IDLE)
-        self.window.show_msg("hello! how can i help you today?", dashboard.Dashboard.BOT)
-        self.window.start_window()
-        self.speaker.speak("hello! how can i help you today?")
+        self.window.set_status(dashboard.Dashboard.SPEAKING)
+        self.window.show_msg("how can i help you?", dashboard.Dashboard.BOT)
+        self.speak("how can i help you?")
+
 
     def wake(self):
+
         wake_word.wait_for_wake_word()
         self.setup()
+
 
         
     def listen(self):
         self.window.set_status(dashboard.Dashboard.LISTENING)
-        command = self.listener.listen().lower()
-        self.window.show_msg(command, dashboard.Dashboard.USER)
-        return command
+
+        success, command = self.listener.listen()
+        if success:
+            self.window.show_msg(command, dashboard.Dashboard.USER)
+            return command
+        return None
     
-    def say(self, msg, sender):
+    def say_msg(self, msg, sender):
         self.window.show_msg(msg, sender)
-        self.speaker.speak(msg)
+        self.speak(msg)
 
     def sleep(self):
-        self.window.destroy_window()
+        pass
 
     
     def handle_opening(self, command):
@@ -46,20 +63,34 @@ class Assistant:
         handled, message = open_app(command)
 
         if handled:
-            self.say(message)
+            self.say_msg(message, dashboard.Dashboard.BOT)
+            if message == "sorry, but i don't know that app yet.would you like me to learn it?":
+                confirm = self.listener.listen()
+                if "yes" in confirm:
+                    command = "learn app"
+                    return False
+            
             return True
 
         handled, message = open_folder(command)
 
         if handled:
-            self.say(message)
+            self.say_msg(message, dashboard.Dashboard.BOT)
+            if message == "sorry, but i don't know thatfolder yet.would you like me to learn it?":
+                command = "learn folder"
+                return False
+            
             return True
 
         handled, message = website_opener(command)
 
         if handled:
-            self.say(message)
-            return True
+            self.window.set_status(dashboard.Dashboard.SPEAKING)
+            self.say_msg(message, dashboard.Dashboard.BOT)
+            self.window.set_status(dashboard.Dashboard.THINKING)
+            if message == "sorry, but i don't know that website yet.would you like me to learn it?":
+                command = "learn website"
+            return False
 
         return False
     
@@ -67,8 +98,8 @@ class Assistant:
         handled, message = learn_website_confirmer(command)
 
         if handled:
-            self.say(message)
-            name = self.listener.listen()
+            self.say_msg(message, dashboard.Dashboard.BOT)
+            success, name = self.listener.listen()
             url = get_url()
             learn_website(name, url)
             return True
@@ -76,25 +107,29 @@ class Assistant:
         handled, message = learn_folder_confirmer(command)
 
         if handled:
-            self.say(message)
-            name = self.listener.listen()
-            learn_folder(name)
-            return True
+            self.say_msg(message, dashboard.Dashboard.BOT)
+            success, name = self.listener.listen()
+            if success:
+                learn_folder(name)
+                return True
 
         handled, message = learn_app_confirmer(command)
 
         if handled:
-            self.say(message)
-            name = self.listener.listen()
-            learn_app(name)
-            return True
+            self.say_msg(message, dashboard.Dashboard.BOT)
+            success, name = self.listener.listen()
+            if success:
+                learn_app(name)
+                return True
+            return
+        
         return False
     
     def handle_system(self, command):
         handled, message = shutdown_confirmation(command)
 
         if handled:
-            self.say(message)
+            self.say_msg(message, dashboard.Dashboard.BOT)
             confirmation = self.listener.listen()
             shutdown(confirmation)
             return True
@@ -102,7 +137,7 @@ class Assistant:
         handled, message = restart_confirmation(command)
 
         if handled:
-            self.say(message)
+            self.say_msg(message, dashboard.Dashboard.BOT)
             confirmation = self.listener.listen()
             restart(confirmation)
             return True
@@ -110,7 +145,7 @@ class Assistant:
         handled, message = log_out_confirmation(command)
 
         if handled:
-            self.say(message)
+            self.say_msg(message, dashboard.Dashboard.BOT)
             confirmation = self.listener.listen()
             log_out(confirmation)
             return True
@@ -118,28 +153,29 @@ class Assistant:
         handled, message = lock(command)
 
         if handled:
-            self.say(message)
+            self.say_msg(message, dashboard.Dashboard.BOT)
             return True
         
         handled, message = sleep(command)
 
         if handled:
-            self.say(message)
+            self.say_msg(message, dashboard.Dashboard.BOT)
             return True
             
         handled, message = hibernate(command)
 
         if handled:
-            self.say(message)
+            self.say_msg(message, dashboard.Dashboard.BOT)
             return True
 
         return False
 
     def unknown_command(self):
-        self.say("sorry. i don't know that command.", dashboard.Dashboard.BOT)
+        self.say_msg("sorry. i don't know that command.", dashboard.Dashboard.BOT)
 
 
     def execute(self, command):
+        self.window.set_status(dashboard.Dashboard.THINKING)
         if self.handle_opening(command):
             return
         

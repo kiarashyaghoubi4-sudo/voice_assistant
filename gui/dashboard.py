@@ -43,6 +43,11 @@ class Dashboard:
         self.status_label.configure(text = status)
         self.window.update_idletasks()
 
+        if status == self.IDLE:
+            self.window.withdraw()
+        else:
+            self.window.deiconify()
+
 
     def create_chat_box(self):
         self.chat_box = ctk.CTkTextbox(self.chat_frame)
@@ -62,8 +67,6 @@ class Dashboard:
 
         self.chat_box.configure(state="disabled")
 
-    def destroy_window(self):
-        self.window.destroy()
 
     def start_window(self):
         self.window.mainloop()

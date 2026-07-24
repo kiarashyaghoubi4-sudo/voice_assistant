@@ -2,9 +2,9 @@ from os import startfile
 from json import load
 from utils.paths import DATA
 KEYWORDS = (
-    "open app",
-    "launch app",
-    "run app",
+    "open",
+    "launch",
+    "run",
 )
 def open_app(txt):
     txt = txt.lower()
@@ -20,4 +20,4 @@ def open_app(txt):
 
                 return True, f"sure! opening {app}."
                 
-    return f"sorry.but i don't know that app yet.would you like me to learn it?"
+    return True, "sorry, but i don't know that app yet.would you like me to learn it?"

@@ -2,7 +2,7 @@ from subprocess import run
 
 def lock(txt):
     txt = txt.lower()
-    if "y" in txt:
+    if "lock" in txt:
         run("rundll32 user32.dll LockWorkStation")
         return True, "sure! locking."
     return False, ""
@@ -39,7 +39,7 @@ def log_out_confirmation(txt):
     txt = txt.lower()
     if "log out" in txt:
         return "are you sure you want to log out?"
-    return None
+    return False, ""
 
 def log_out(txt):
     txt = txt.lower()

@@ -1,13 +1,14 @@
 from assistant import Assistant
+from threading import Thread
+
+
 
 assistant = Assistant()
 
-while True:
 
-    assistant.wake()
-
-    command = assistant.listen()
-
-    assistant.execute(command)
-
-    assistant.sleep()
+assistant_thread = Thread(
+    target=assistant.run,
+    daemon=True
+)
+assistant_thread.start()
+assistant.window.start_window()

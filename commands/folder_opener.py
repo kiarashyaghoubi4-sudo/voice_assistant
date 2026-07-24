@@ -26,4 +26,4 @@ def open_folder(txt):
             startfile(path)
             return True, f"sure! opening {folder}"
 
-    return True, "sorry.i don't know that folder yet.would you like me to learn it?"
+    return True, "sorry, but i don't know that folder yet.would you like me to learn it?"

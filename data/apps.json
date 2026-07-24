@@ -1,6 +1,7 @@
 {
-    "notepad" : "notepad",
-    "cmd" : "cmd",
-    "calclulator" : "calc",
-    "file explorer" : "explorer"
+    "cmd": "cmd",
+    "file explorer": "explorer",
+    "powershell": "powershell",
+    "notepad": "notepad",
+    "command prompt" : "cmd"
 }
